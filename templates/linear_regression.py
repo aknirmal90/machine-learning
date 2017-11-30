@@ -30,7 +30,9 @@ plt.plot(X, regressor.predict(X_test), color='blue')
 #########################################################################################
 import statsmodels.formula.api as sm
 cols = [0:-1]
-ols_fit = sm.OLS(X[cols], y)
+X_dash = np.append(np.ones((n_rows_x, 1), X[cols]))
+# np.ones column appended at beginning represents the `constant` field present in linear_regression models
+ols_fit = sm.OLS(X_dash, y)
 ols.summary()
 
 # chose a threshold p_value (say 0.05), any IV whose p_value > 0.05 could be dropped
